@@ -15,3 +15,7 @@ Within this repo you can find some tools and patches for well-known tools which 
 
     Here you can find some helpful scripts and tools to work with DroidBox (e.g., anti-detection for DroidBox 4.1.1)
 
+* Mobile-Sandbox API:
+
+   Here you can find the API to interact with the next generation version of the Mobile-Sandbox.
+
