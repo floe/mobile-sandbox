@@ -3,7 +3,6 @@ import sys, requests
 
 # Authentication Parameters
 # if you need an API key and user name please contact me
-URL = 'http://mobilesandbox.org'
 API_FORMAT = 'json'
 API_USER = ''
 API_KEY = ''
@@ -31,7 +30,7 @@ files = {'file':sampleFile}
 # submitting sample file and meta data
 print "------------------------------------------------------------------"
 print "submitting sample..."
-r = requests.post(URL+"/api/bot/queue/submit_sample/", params=payload, files=files)
+r = requests.post("http://mobilesandbox.org/api/bot/queue/submit_sample/", params=payload, files=files)
 
 # printing results
 print "submission result: " + r.text
