@@ -8,7 +8,7 @@ API_USER = ''
 API_KEY = ''
 
 # parsing input parameters
-if (len(sys.argv) < 5):
+if (len(sys.argv) < 6):
     print "Upload a suspicious Android app to the Mobile-Sandbox for analysis."
     print "Usage: %s requests [public submission (0,1)] [email adress] [apk_name] [apk_origin] [apk_file_location]" % sys.argv[0]
     print "If request contains a space, don't forget to surround it with \"\""
@@ -33,7 +33,7 @@ print "submitting sample..."
 r = requests.post("http://mobilesandbox.org/api/bot/queue/submit_sample/", params=payload, files=files)
 
 # printing results
-print "submission result: " + r.text
+print "submission result: \033[94m" + r.text + "\033[0m"
 print "------------------------------------------------------------------"
 
 # cleanup
