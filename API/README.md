@@ -9,5 +9,5 @@ Within this repo you can find the API to interact with the next generation versi
 
 * Get analysis reports for a given sample:
 
-       ./get_report.py [sample_id] [report_type (static, dynamic)] [destination_dir]
+        ./get_report.py [sample_id] [report_type (static, dynamic)] [destination_dir]
 
