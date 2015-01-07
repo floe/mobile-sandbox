@@ -56,6 +56,6 @@ if not r.status_code == requests.codes.ok:
     print "query result: \033[91m" + r.text + "\033[0m"
 else:
     for key, value in r.json().iteritems():
-    	key = questions[key]
+        key = questions[key]
         print key + ": \033[94m" + str(value) + "\033[0m"
 print "------------------------------------------------------------------"
