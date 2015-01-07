@@ -24,14 +24,14 @@
 #                          Imports  & Global Variables                                  #
 #########################################################################################
 # MobileSandbox Authentication Parameters
-MSURL = ''
+MSURL = ''	# URL of the Mobile-Sandbox backend
 MSAPIFORMAT = 'json'
-MSAPIUSER = ''
-MSAPIKEY = ''
+MSAPIUSER = ''	# API user name
+MSAPIKEY = ''	# API key for the aforementioned user
 # important files and folders
 TMPDIR = "/tmp/analysis/"
 AAPT = ""	# location of the aapt binary
 EMPTYICON = "./empty.png"
 APICALLS = "./APIcalls.txt"
-BACKSMALI = "" # location of the baksmali.jar file
+BACKSMALI = ""	# location of the baksmali.jar file
 ADSLIBS = "./ads.csv"
