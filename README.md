@@ -3,6 +3,10 @@ mobile-sandbox-tools
 
 Within this repo you can find some tools and patches for well-known tools which we are using in the mobile-sandbox project.
 
+* Backend:
+
+    Here you can find the Mobile-Sandbox backend (Django)
+
 * DroidBox 2.3:
 
     Here you can find custom patches for the 2.3 version of DroidBox
@@ -14,6 +18,14 @@ Within this repo you can find some tools and patches for well-known tools which 
 * DroidBox Scripts:
 
     Here you can find some helpful scripts and tools to work with DroidBox (e.g., anti-detection for DroidBox 4.1.1)
+
+* DroidLyzer:
+
+    Here you can find the static analyzer of the Mobile-Sandbox.
+
+* DroidMS:
+
+   Here you can find the dynamic analysis module of the Mobile-Sandbox.
 
 * Mobile-Sandbox API:
 
