@@ -15,3 +15,6 @@ Within this repo you can find the API to interact with the next generation versi
 
         ./get_info.py [type (md5,sha256)] [value]
 
+* Get some basic answers of what the app is capable of:
+
+        ./get_overview.py [type (md5,sha256)] [value]
