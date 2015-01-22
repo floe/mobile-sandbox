@@ -3,6 +3,10 @@ mobile-sandbox-tools
 
 Within this repo you can find some tools and patches for well-known tools which we are using in the mobile-sandbox project.
 
+* AV:
+
+    Here you can find the module to connect the Mobile-Sandbox to VirusTotal
+
 * Backend:
 
     Here you can find the Mobile-Sandbox backend (Django)
