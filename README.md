@@ -1,7 +1,7 @@
-Mobile-Sandbox tools and sources
-================================
+Mobile-Sandbox
+==============
 
-Within this repo you can find some tools and patches for well-known tools which we are using in the mobile-sandbox project.
+Within this repo you can find some tools and patches for well-known tools which we are using within the Mobile-Sandbox project as well as the source code of the most important modules of the system.
 
 * API:
 
