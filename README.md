@@ -3,6 +3,10 @@ mobile-sandbox-tools
 
 Within this repo you can find some tools and patches for well-known tools which we are using in the mobile-sandbox project.
 
+* API:
+
+   Here you can find the API to interact with the next generation version of the Mobile-Sandbox.
+
 * AV:
 
     Here you can find the module to connect the Mobile-Sandbox to VirusTotal
@@ -30,8 +34,4 @@ Within this repo you can find some tools and patches for well-known tools which 
 * DroidMS:
 
    Here you can find the dynamic analysis module of the Mobile-Sandbox.
-
-* Mobile-Sandbox API:
-
-   Here you can find the API to interact with the next generation version of the Mobile-Sandbox.
 
