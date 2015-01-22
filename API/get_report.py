@@ -24,7 +24,7 @@ payload = {'format':API_FORMAT,
 # submitting sample file and meta data
 print "------------------------------------------------------------------"
 print "asking for " + str(sys.argv[2]) + " reports for the sample with ID " + str(sys.argv[1])
-r = requests.get("http://131.188.31.176/api/bot/queue/get_report/", params=payload)
+r = requests.get("http://mobilesandbox.org/api/bot/queue/get_report/", params=payload)
 
 # printing result and writing report file to disk
 if not r.status_code == requests.codes.ok:
