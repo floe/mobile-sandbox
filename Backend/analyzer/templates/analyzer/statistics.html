@@ -1,0 +1,75 @@
+{% extends "analyzer/base.html" %}
+
+{% block meta %}
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+{% endblock %}
+
+{% block nav %}
+<ul class="nav">
+            <li><a href="/">Home</a></li>
+            <li><a href="/backend">Reports</a></li>
+            <li class="active"><a href="/statistics">Statistics</a></li>
+            <li><a href="http://131.188.31.187/trac">Trac</a></li>
+</ul>
+{% endblock %}
+{% block content %}
+<section id="tables">
+  <div class="row">
+    <div class="span4 columns">
+      <h2>Backend<br>-----------<br>Statistics</h2>
+    </div>
+    <div class="span12 columns">
+            {% load chart_tags %}
+                        {% chart %}
+                                    chxr=0,0,{{maximumSampleUpload}}
+                                    chxl=1:{{datesSampleUpload}}
+                                    chxt=y,x
+                                    chs=700x300
+                                    cht=lc
+                                    chco=0000FF
+                                    chds=0,{{maximumSampleUpload}}
+                                    chd=t:{{valuesSampleUpload}}
+                                    chg=-1,-1,1,1
+                                    chls=2,4,0
+                                    chm=B,76A4FB64,0,0,0
+                                    chtt=Uploaded+Samples+per+Day+(last+10+days)
+                                    chts=3A3A3A,13
+                        {% endchart %}
+                        <br><br><br><br><br>
+                        {% chart %}
+                                    chxr=0,0,{{maximumVirusCount}}
+                                    chxl=1:{{virusName}}
+                                    chxt=x,r
+                                    chma=30
+                                    chbh=r
+                                    chs=770x389
+                                    cht=bhg
+                                    chco=0000FF
+                                    chds=0,{{maximumVirusCount}}
+                                    chd=t:{{virusCount}}
+                                    chg=-1,-1,1,1
+                                    chls=2,4,0
+                                    chtt=Malware+Families+(androguard)
+                                    chts=3A3A3A,13
+                        {% endchart %}
+                        <br><br><br><br><br>
+                        {% chart %}
+                                    chxr=0,0,{{maximumVirusCount2}}
+                                    chxl=1:{{virusName2}}
+                                    chxt=x,r
+                                    chma=30
+                                    chbh=r
+                                    chs=500x599
+                                    cht=bhg
+                                    chco=0000FF
+                                    chds=0,{{maximumVirusCount2}}
+                                    chd=t:{{virusCount2}}
+                                    chg=-1,-1,1,1
+                                    chls=2,4,0
+                                    chtt=Malware+Families+(Kaspersky)
+                                    chts=3A3A3A,13
+                        {% endchart %}
+    </div>
+  </div>
+</section>
+{% endblock %}

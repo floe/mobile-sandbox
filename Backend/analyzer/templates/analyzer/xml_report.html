@@ -1,0 +1,104 @@
+{% extends "analyzer/base.html" %}
+
+{% block meta %}
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+{% endblock %}
+
+{% block nav %}
+<ul class="nav">
+            <li><a href="/">Home</a></li>
+            <li class="active"><a href="/reports">Reports</a></li>
+            <li><a href="/about">About</a></li>
+</ul>
+{% endblock %}
+{% block content %}
+<section id="tables">
+  <div class="row">
+    <div class="span4 columns">
+      <h2>Static Analyzer V1<br>&nbsp;&nbsp;&nbsp;&nbsp;-- Report --</h2>
+    </div>
+    <div class="span12 columns">
+	    {% autoescape off %} 
+	    <table>
+              <tr>
+                <th>Sample SHA256:</th>
+                <td>{{sha256}}</td>
+              </tr>
+              <tr>
+                <th>Sample MD5:</th>
+                <td>{{ md5 }}</td>
+              </tr>
+              <tr>
+                <th>Start of Analysis:</th>
+                <td>{{date1}}</td>
+              </tr>
+	      <tr>
+                <th>End of Analysis:</th>
+                <td>{{date2}}</td>
+              </tr>
+              <tr>
+                <th>apk Name:</th>
+                <td>{{apk_name}}</td>
+              </tr>
+              <tr>
+                <th>Package Name:</th>
+                <td>{{package_name}}</td>
+              </tr>
+              <tr>
+                <th>SDK Version:</th>
+                <td>{{sdk_version}}</td>
+              </tr>
+	      <tr>
+                <th>Files inside the APK-package:</th>
+                <td>{{files}}</td>
+              </tr>
+              <tr>
+                <th>Used Features:</th>
+                <td>{{features}}</td>
+              </tr>
+              <tr>
+                <th>Requested Permissions from Android Manifest:</th>
+                <td>{{permissions}}</td>
+              </tr>
+	      <tr>
+                <th>Used Permissions:</th>
+                <td>{{real_permissions}}</td>
+              </tr>
+	      <tr>
+                <th>Responsible API calls for used Permissions:</th>
+                <td>{{api_calls}}</td>
+              </tr>
+              <tr>
+                <th>Used Intents:</th>
+                <td>{{intents}}</td>
+              </tr>
+	      <tr>
+                <th>Used Activities:</th>
+                <td>{{activities}}</td>
+              </tr>
+              <tr>
+                <th>Potentially dangerous Calls:</th>
+                <td>{{calls}}</td>
+              </tr>
+              <tr>
+                <th>Used Services and Receiver:</th>
+                <td>{{serrecs}}</td>
+              </tr>
+	      <tr>
+                <th>Used Providers:</th>
+                <td>{{providers}}</td>
+              </tr>
+	      <tr>
+                <th>Used Networks:</th>
+                <td>{{networks}}</td>
+              </tr>
+              <tr>
+                <th>URLs:</th>
+                <td>{{urls}}</td>
+              </tr>
+            </table>
+            {% endautoescape %} 	
+         </div>
+	</div>
+</section>
+{% endblock %}

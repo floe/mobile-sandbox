@@ -1,0 +1,140 @@
+{% extends "analyzer/base.html" %}
+
+{% block meta %}
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+{% endblock %}
+
+{% block nav %}
+<ul class="nav">
+            <li><a href="/">Home</a></li>
+            <li><a href="/reports">Reports</a></li>
+            <li class="active"><a href="/about">About</a></li>
+</ul>
+{% endblock %}
+
+{% block content %}
+  <div class="row">
+    <div class="span16 columns">
+   <table width="90%" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                	<td>Mobilesandbox.org and the alias Mobile-Sandbox.com are part of the <a href="http://www.pt-it.pt-dlr.de/de/2602.php" style="text-decoration:none">MobWorm</a>
+                        project and provides static and dynamic malware analysis for Android OS smartphones.<br /><br />This service is still under continuous
+                        development and is run purely as a research tool and a best effort service. We reserve the right to take it down at any point for maintenance
+                        or other reasons.<br /><br />If you want to stay informed about the state of development or system updates you should visit our
+                        <a href="http://forensics.spreitzenbarth.de/">blog</a> or follow us on <a href="http://twitter.com/#!/mobile_sandbox">twitter</a>.</td>
+                </tr>
+		<tr>
+			<td>Submissions by Country:<br /><br />
+                <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+                <script type="text/javascript">
+                  google.load("visualization", "1", {packages:["geochart"]});
+                  google.setOnLoadCallback(drawRegionsMap);
+
+                  function drawRegionsMap() {
+
+                    var data = google.visualization.arrayToDataTable([
+                      ['Country', 'Submitted Samples'],
+						{% autoescape off %}
+						{% for entries in data %}
+							    {{ entries }}
+				    	        {% endfor %}
+						{% endautoescape %}
+                    ]);
+                    var options = {};
+                            options['colors'] = ['lightgrey', 'blue'];
+							options['dataMode'] = 'regions';
+							options['height'] = '400';
+							options['width'] = '650';
+                    var chart = new google.visualization.GeoChart(document.getElementById('visualization'));
+                    chart.draw(data, options);
+                  }
+                </script>
+			<div id="visualization" align="center"></div></td>
+		</tr>
+                <tr>
+                	<td>Short Summary:<br /><br />coming soon....</td>
+                </tr>
+                <tr>
+                	<td>If you want to know more about the Mobile-Sandbox please take a look into the paper describing the
+                        used tools and techniques:
+                        <br><br>
+                        <a href="http://dl.acm.org/citation.cfm?doid=2480362.2480701">Mobile-Sandbox: Having a deeper look intoAndroid applications</a>
+                    </td>
+                </tr>
+                <tr>
+                	<td>Workflow of the Sandbox-System:<br /><br />
+                	<div align="center"><img src="{{ STATIC_URL }}images/workflow.png" width="700px" alt="workflow of the mobile-sandbox" /></div></td>
+                </tr>
+                <tr>
+                    <td valign="middle">This project is sponsored by:<br /><br />
+	            <a href="http://www.bmbf.de/"><img src="{{ STATIC_URL }}images/bmbf_logo_small.png" alt="bmbf logo" height="109" border="0" /></a>
+		    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www1.informatik.uni-erlangen.de">
+                            <img src="{{ STATIC_URL }}images/i1_logo_small.png" alt="i1 logo" height="113" border="0" /></a>
+		    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.techfak.uni-erlangen.de">
+                            <img src="{{ STATIC_URL }}images/logo_fau.png" alt="FAU logo" height="90" border="0" /></a>
+		    </td>
+                </tr>
+		<tr>
+                    <td>Partner of this project:<br /><br />
+	            <a href="http://www.siemens.com/cert"><img src="{{ STATIC_URL }}images/siemens_logo.png" alt="siemens cert logo" width="201" height="50" border="0" /></a><br /><br /><br /></td>
+                </tr>
+		<tr>
+                    <td>The AV scan of the samples is powered by:<br /><br />
+	            <a href="http://www.virustotal.com/"><img src="{{ STATIC_URL }}images/vt.png" alt="virustotal logo" height="50" border="0" /></a>
+                        <br /><br />Only samples submitted with marked "Others can view this report" checkbox will be submitted to VirusTotal.<br /><br /></td>
+                </tr>
+		<tr>
+		   <td>Copyright Disclaimer:<br /><br />Portions of this page are modifications based on work created and shared by
+               Google and used according to terms described in the Creative Commons 3.0 Attribution License.<br /><br />In
+               all publications, the owner endeavours to comply with applicable copyrights. If, in spite of this, an infringement
+               of copyright should occur, the owner will after notification remove the relevant object from its publication or
+               indicate the appropriate copyright. All brand names and trademarks mentioned within the Internet offering that
+               are possibly protected by third parties are without limitation subject to the provisions of the law on trademarks
+               and related signs and the property rights of the registered owners. The mere fact that they have been mentioned
+               should not be taken to mean that trademarks are not protected by third-party rights. The owner holds sole copyright
+               to the owner's own content at the present domain. Reproduction of graphics or texts in other electronic or printed
+               publications is not permitted without the owner's express consent.</td>
+		</tr>
+        <tr>
+		   <td>Google Analytics Disclaimer:<br /><br />This website uses Google Analytics, a web analysis service of the Google Inc
+               Google Analytics uses so-called„ Cookies“, text files which are stored on your computer and which allows an analysis
+               of the use of the website by you. The information generated by the Cookie about your use of this website (including
+               your IP address) is transferred to a server by Google in the USA and is stored there. Google will use this information
+               to evaluate your use of the website in order to put together a report about the website activities for the website
+               operators and to produce linked services with the website use and the Internet use. Also Google will transfer this
+               information if necessary to third parties, provided that this legally prescribed or as far as third parties process
+               these data on behalf of Google. Google will associate in no circumstances your IP address with the other data which
+               are stored by Google. They can prevent the installation of the Cookies by a suitable setting of your browsers software;
+               we point out to you, nevertheless, to the fact that you cannot use all functions of this website in this case if
+               necessary fully extensively. By the use of this website you agree with the treatment of the data upraised about you
+               by Google in the before described way and for the before named purpose.</td>
+		</tr>
+        <tr>
+		   <td>External Links Disclaimer:<br /><br />Where the owner provides direct or indirect references (i.e. links) to external
+               websites, it is liable only if the owner has precise knowledge of the content and if it is technically possible and
+               reasonable for it to prevent use in the event that they contain unlawful content. The owner hereby expressly states
+               that the linked websites had no illegal content when the links were set up. It has no influence whatsoever on the
+               current or future design of the linked sites and hereby distances itself expressly from any alterations to the content
+               that were made after the links to those sites were set up. The owner is not responsible for the content, availability,
+               correctness or accuracy of the linked sites or of the offerings, links or advertisements therein. It is not liable for
+               illegal, incorrect or incomplete content or in particular for damages arising from the use or non-use of the information
+               provided on linked sites.</td>
+		</tr>
+        <tr>
+            <td>The following information (Impressum) is required under German law. Responsible for the content of this site is:<br />
+                <br />Security Research Group<br />University of Erlangen-Nuremberg <br />Martensstr. 3<br />91058 Erlangen<br />Germany</td>
+        </tr>
+            </table>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="https://twitter.com/mobile_sandbox"><img src="{{ STATIC_URL }}images/twitter.png" alt="Follow us on Twitter" border="0" /></a>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://plus.google.com/+MichaelSpreitzenbarth/?rel=author">
+        <img src="{{ STATIC_URL }}images/google.png" alt="Follow us on Google+" border="0" /></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="https://github.com/mspreitz/mobile-sandbox"><img src="{{ STATIC_URL }}images/github.png" alt="MobileSandbox on GitHub" border="0" /></a>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://forensics.spreitzenbarth.de/"><img src="{{ STATIC_URL }}images/wordpress.png" alt="MobileSandbox Blog" border="0" /></a>
+	</div>
+
+    </div>
+{% endblock %}

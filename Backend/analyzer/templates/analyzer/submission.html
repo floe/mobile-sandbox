@@ -1,0 +1,28 @@
+{% extends "analyzer/base.html" %}
+
+{% block meta %}
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+{% if error_message == 'OK' %}<meta http-equiv="REFRESH" content="5;URL=http://mobilesandbox.org/reports/">{% endif %}
+{% endblock %}
+
+
+{% block nav %}
+<ul class="nav">
+            <li><a href="/">Home</a></li>
+            <li><a href="/reports">Reports</a></li>
+            <li><a href="/about">About</a></li>
+</ul>
+{% endblock %}
+
+{% block content %}
+<section id="tables">
+  <div class="row">
+    <div class="span4 columns">
+      <h2>Submission</h2>
+    </div>
+    <div class="span12 columns">
+      {% if error_message != 'OK' %}<p><h2>{% autoescape off %}{{ error_message }}{% endautoescape %}</h2></p>{% endif %}
+      {% if error_message == 'OK' %}<h2>The file {{ name }} with the following md5 {{ md5 }} has been submitted successfully!</h2>{% endif %}
+    </div>
+</section>
+{% endblock %}

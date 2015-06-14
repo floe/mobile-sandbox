@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<title>Mobile-Sandbox (NG)</title>
+    {% block meta %}
+	{% endblock %}
+    <meta name="description" content="The Mobile-Sandbox provides static and dynamic malware analysis combined with machine learning techniques for Android applications." />
+    <meta name="keywords" content="Mobile-Sandbox, Android, Malware, Analysis, static, dynamic, trojan, virus, mobile, security" />
+    <meta name="author" content="Michael Spreitzenbarth">
+    <meta name="robots" content="index, follow" />
+    <meta name="revisit-after" content="1 month" />
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@mobile_sandbox">
+    <meta name="twitter:title" content="Mobile-Sandbox (NG)">
+    <meta name="twitter:description" content="The Mobile-Sandbox provides static and dynamic malware analysis combined with machine learning techniques for Android applications.">
+    <meta name="twitter:creator" content="@mobile_sandbox">
+    <meta name="twitter:image:src" content="http://mobilesandbox.org/static/images/twitter_logo.png">
+    <meta name="twitter:image" content="http://mobilesandbox.org/static/images/twitter_logo.png">
+    <meta name="twitter:domain" content="http://mobilesandbox.org">
+    <meta name="twitter:url" content="http://mobilesandbox.org">
+    <meta property="og:title" content="Mobile-Sandbox (NG)" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="http://mobilesandbox.org" />
+    <meta property="og:image" content="http://mobilesandbox.org/static/images/facebook_banner.png" />
+    <meta property="og:description" content="The Mobile-Sandbox provides static and dynamic malware analysis combined with machine learning techniques for Android applications." />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale:alternate" content="en_GB" />
+    <meta property="og:locale:alternate" content="de_DE" />
+    <meta property="og:site_name" content="Mobile-Sandbox (NG)" />
+	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}styles/screen.css" />
+	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}styles/docs.css">
+	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}styles/prettify.css">
+    <script src="{{ STATIC_URL }}js/highcharts.js"></script>
+	<script src="{{ STATIC_URL }}js/jquery.js"></script>
+	<script src="{{ STATIC_URL }}js/jquery.tablesorter.min.js"></script>
+	<script src="{{ STATIC_URL }}js/prettify.js"></script>
+	<script src="{{ STATIC_URL }}js/application.js"></script>
+</head>
+
+<body>
+{% block header %}
+    <div class="topbar">
+      <div class="topbar-inner">
+        <div class="container">
+          <h3><a href="/">Mobile Sandbox</a></h3>
+
+	  {% block nav %}
+          
+	  {% endblock %}
+	<ul class="nav secondary-nav">
+          <li><form action="/search" method="get"><input id="sample_id" type="text" placeholder="Search" name="q" /></form></li>
+          <li><a href="/login">Login</a></li>
+	</ul>
+        </div>
+      </div><!-- /topbar-inner -->
+    </div><!-- /topbar -->
+
+   <div id="masthead">
+      <div class="inner">
+        <div class="container">
+	  <h1><img src="{{ STATIC_URL }}images/logo_small.png" alt="Mobile Sandbox"/></h1>
+        </div><!-- /container -->
+      </div>
+    </div>
+{% endblock %}
+<div class="container">
+
+<section>
+
+{% block content %}
+{% endblock %}
+
+</section>
+
+</div>
+
+    <div id="footer">
+      <div class="inner">
+        <div class="container">
+          <p class="right"><a href="#">Back to top</a></p>
+          <p>
+            <a href="http://mobilesandbox.org" target="_blank">Mobile-Sandbox (NG)</a>
+          </p>
+        </div>
+      </div>
+    </div>
+</body>
+</html>
+

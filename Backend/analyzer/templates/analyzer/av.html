@@ -1,0 +1,43 @@
+{% extends "analyzer/base.html" %}
+
+{% block meta %}
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+{% endblock %}
+
+{% block nav %}
+<ul class="nav">
+            <li><a href="/">Home</a></li>
+            <li class="active"><a href="/reports">Reports</a></li>
+            <li><a href="/about">About</a></li>
+</ul>
+{% endblock %}
+{% block content %}
+<div align="center"><a href="/report/?q={{ query_string }}">Back to analysis overview</a></div>
+<section id="tables">
+  <div class="row">
+    <div class="span16 columns">
+      {% if found_entries_av %}
+        <table class="zebra-striped" id="sortTableExample2">
+        <thead>
+         <tr>
+            <th class="blue">AV-Engine</th>
+            <th class="black">Result</th>
+          </tr>
+        </thead>
+        <tbody>
+	        {% for av in found_entries_av %}
+	    	<tr>
+                        <td>{{ av.av_engine }}</td>
+	        	<td>{{ av.result }}</td>
+	        </tr>
+		{% endfor %}
+         </tbody>
+	</table>
+         </div>
+         {% else %}
+                <h2>No AV-reports found for the sample with the ID {{ query_string }}</h2>
+         {% endif %}
+	</div>
+</section>
+<div align="center"><a href="/report/?q={{ query_string }}">Back to analysis overview</a></div>
+{% endblock %}

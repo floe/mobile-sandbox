@@ -1,0 +1,30 @@
+{% extends "analyzer/base.html" %}
+
+{% block meta %}
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+{% endblock %}
+
+{% block nav %}
+<ul class="nav">
+            <li><a href="/">Home</a></li>
+            <li><a href="/reports">Reports</a></li>
+            <li><a href="/about">About</a></li>
+</ul>
+{% endblock %}
+{% block content %}
+<section id="tables">
+  <div class="row">
+    <div class="span4 columns">
+      <h2>Login:</h2>
+    </div>
+    <div class="span12 columns">
+        <form action="/loggedin/" method="post">{% csrf_token %}
+            username:
+            <input type="text" name="username" value="{{ username}}" /><br />
+            password:
+            <input type="password" name="password" value="" /><br /><br /><br />
+            <input type="submit" value="Log In" />
+        </form>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends "analyzer/base.html" %}
+
+{% block meta %}
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+{% endblock %}
+
+{% block nav %}
+<ul class="nav">
+            <li><a href="/">Home</a></li>
+            <li class="active"><a href="/reports">Reports</a></li>
+            <li><a href="/about">About</a></li>
+</ul>
+{% endblock %}
+{% block content %}
+<div align="center"><a href="/report/?q={{ query_string }}">Back to analysis overview</a></div>
+<section id="tables">
+  <div class="row">
+    <div class="span4 columns">
+      <h2>Screenshots:</h2>
+    </div>
+    <div class="span12 columns">
+      {% if pngList %}
+	    {% for png in pngList %}
+			<img src='{{ png }}' width='200px' /><br><br>
+	    {% endfor %}
+         {% else %}
+                <h2>No screenshots available for this sample !</h2>
+         {% endif %}
+    </div>
+</section>
+<div align="center"><a href="/report/?q={{ query_string }}">Back to analysis overview</a></div>
+{% endblock %}

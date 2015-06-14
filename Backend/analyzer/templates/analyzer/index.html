@@ -1,0 +1,79 @@
+{% extends "analyzer/base.html" %}
+
+{% block meta %}
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+{% endblock %}
+
+{% block nav %}
+<ul class="nav">
+            <li class="active"><a href="/">Home</a></li>
+            <li><a href="/reports">Reports</a></li>
+            <li><a href="/about">About</a></li>
+</ul>
+{% endblock %}
+
+{% block content %}
+  <div class="row">
+    <div class="span4 columns">
+      <h2>Submit a Sample</h2>
+      <p>Provide an Android application file (apk-file) and the Mobile-Sandbox will analyze the file for any malicious behaviour.</p>
+    </div>
+    <div class="span12 columns">
+	<form action="/submit/" method="post" enctype="multipart/form-data">
+	{% csrf_token %}
+	<div class="clearfix">
+		<label for="fileInput">File Sample</label>
+		<div class="input">
+			<input type="file" id="file" name="file" size="45"/> <br />
+		</div>
+	</div>
+          <div class="clearfix">
+            <label id="optionsCheckboxes">Analysis Options</label>
+
+            <div class="input">
+              <ul class="inputs-list">
+                <li>
+                  <label>
+                    <input type="checkbox" name="optionsCheckboxes" value="visibleforothers" checked/>
+	            <span>Others can view this report</span>
+                  </label>
+                </li>
+
+                <li>
+                  <label>
+                    <input type="checkbox" name="optionsCheckboxes" value="deleteAfterAnalysis" />
+	            <span>Delete sample after analysis (Note: You must provide an email address)</span>
+                  </label>
+                </li>
+              <span class="help-block">
+                <strong>Note:</strong> One option must be selected otherwise no analysis will be performed.
+              </span>
+            </div>
+
+          </div><!-- /clearfix -->
+	<div class="clearfix">
+		<label for="prependedInput2">Email Notification</label>
+			<div class="input">
+			<input class="xlarge" id="emailNotification" name="emailNotification" size="1000" type="text" />
+	              <span class="help-block">
+                	<strong>Note:</strong> This is optional. If you enter your email address above, you will get a link to the analysis report.
+        	      </span>
+			</div>
+	</div>
+	<div class="actions">
+		<input type="submit" class="btn primary" value="Send File" />&nbsp;<button type="reset" class="btn">Cancel</button>
+	</div>
+	</form>
+	<p><br>The Mobile-Sandbox provides static and dynamic malware analysis combined with machine learning techniques for Android applications.
+        <br><br> Please keep in mind: This service is run purely as a research tool and a best effort service. We reserve the right to take it
+        down at any point for maintenance or other reasons.<br><br></p>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="https://twitter.com/mobile_sandbox"><img src="{{ STATIC_URL }}images/twitter.png" alt="Follow us on Twitter" border="0" /></a>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://plus.google.com/+MichaelSpreitzenbarth/?rel=author">
+            <img src="{{ STATIC_URL }}images/google.png" alt="Follow us on Google+" border="0" /></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="https://github.com/mspreitz/mobile-sandbox"><img src="{{ STATIC_URL }}images/github.png" alt="MobileSandbox on GitHub" border="0" /></a>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://forensics.spreitzenbarth.de/"><img src="{{ STATIC_URL }}images/wordpress.png" alt="MobileSandbox Blog" border="0" /></a></p>
+    </div>
+{% endblock %}

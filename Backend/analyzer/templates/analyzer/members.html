@@ -1,0 +1,40 @@
+{% extends "analyzer/base.html" %}
+
+{% block meta %}
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+{% endblock %}
+
+{% block nav %}
+<ul class="nav">
+            <li><a href="/member_reports">Own Reports</a></li>
+            <li class="active"><a href="/members">Member Area</a></li>
+            <li><a href="/logout/">Log Out</a></li>
+</ul>
+{% endblock %}
+{% block content %}
+<section id="tables">
+  <div class="row">
+    <div class="span16 columns">
+        <h2>Hello {{ user }}, welcome to the members area!</h2>
+        <br /><br /><br />
+        <table class="zebra-striped" id="sortTableExample2">
+            <thead>
+             <tr>
+                <th class="black">Username</th>
+                <th class="green">Name</th>
+                <th class="blue">Email</th>
+                <th class="purple">API key</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ user }}</td>
+                    <td>{{ djangoUserDBEntry.last_name }}, {{ djangoUserDBEntry.first_name }}</td>
+                    <td>{{ djangoUserDBEntry.email }}</td>
+                    <td>{{ api_key }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+{% endblock %}

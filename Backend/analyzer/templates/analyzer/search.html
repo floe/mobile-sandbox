@@ -1,0 +1,46 @@
+{% extends "analyzer/base.html" %}
+
+{% block meta %}
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+{% endblock %}
+
+{% block nav %}
+<ul class="nav">
+            <li><a href="/">Home</a></li>
+            <li><a href="/reports">Reports</a></li>
+            <li><a href="/about">About</a></li>
+</ul>
+{% endblock %}
+{% block content %}
+<section id="tables">
+  <div class="row">
+    <div class="span4 columns">
+      <h2>Results:</h2>
+    </div>
+    <div class="span12 columns">
+      {% if found_entries %}
+      <table class="zebra-striped" id="sortTableExample">
+        <thead>
+         <tr>
+            <th class="blue">Name</th>
+            <th class="green">MD5</th>
+            <th class="black">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+	    	{% for sample in found_entries %}
+	    	<tr>
+	        	<td><a href="/report/?q={{ sample.id }}">{{ sample.apk_name }}</a></td>
+	        	<td>{{ sample.md5 }}</td>
+	        	<td>{{ sample.status }}</td>
+	        </tr>
+	    	{% endfor %}
+         </tbody>
+	</table>
+         </div>
+         {% else %}
+                <h2>No entries found matching your search terms: {{ query_string }}</h2><br>You can search for md5, sha256 or ssdeep hashes as well as for a given package name.<br>
+         {% endif %}
+	</div>
+</section>
+{% endblock %}
