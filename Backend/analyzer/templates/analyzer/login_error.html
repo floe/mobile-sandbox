@@ -1,0 +1,20 @@
+{% extends "analyzer/base.html" %}
+
+{% block meta %}
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+{% endblock %}
+
+{% block nav %}
+<ul class="nav">
+            <li><a href="/">Home</a></li>
+            <li><a href="/reports">Reports</a></li>
+            <li><a href="/about">About</a></li>
+</ul>
+{% endblock %}
+{% block content %}
+<section id="tables">
+    <div align="center">
+        <h2>{{ message }}</h2>
+    </div>
+</section>
+{% endblock %}

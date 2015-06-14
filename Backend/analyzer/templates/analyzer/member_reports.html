@@ -1,0 +1,48 @@
+{% extends "analyzer/base.html" %}
+{% load reports_extras %}
+
+{% block meta %}
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+{% endblock %}
+
+{% block nav %}
+<ul class="nav">
+            <li class="active"><a href="/member_reports">Own Reports</a></li>
+            <li><a href="/members">Member Area</a></li>
+            <li><a href="/logout/">Log Out</a></li>
+</ul>
+{% endblock %}
+
+{% block content %}
+<section id="tables">
+  <div class="row">
+    <div class="span16 columns">
+	    <strong>Currently there are the following number of samples waiting in our queue for processing: {{ count }} static and {{ count2 }} dynamic</strong><br><br>
+      <table class="zebra-striped" id="sortTableExample">
+        <thead>
+         <tr>
+            <th class="black">Package Name</th>
+            <th class="black">MD5</th>
+            <th class="green">Droidlyzer</th>
+            <th class="blue">SAAF</th>
+            <th class="purple">DroidBox</th>
+            <th class="red">AntiVirus</th>
+          </tr>
+        </thead>
+        <tbody>
+	    	{% for sample in latest_samples %}
+			<tr>
+				<td>{% if sample.status == "done" %}<a href="/report/?q={{ sample.id }}">{% endif %}{% if sample.package_name != "" %}{{ sample.package_name }}{% else %}{{ sample.apk_name }}{% endif %}{% if sample.status == "done" %}</a>{% endif %}</td>
+                <td>{{ sample.md5 }}</td>
+				<td>{% if droidLyzerReports|get_report_result:sample.id %}Done{% else %}Queued{% endif %}</td>
+                <td>{% if saafReports|get_report_result:sample.id %}Done{% else %}Queued{% endif %}</td>
+                <td>{% if droidBoxReports|get_report_result:sample.id %}Done{% else %}Queued{% endif %}</td>
+                <td>{%  if results|get_result:sample.id == "benign" %}<div class="green">{{ results|get_result:sample.id }}</div>{%  elif results|get_result:sample.id == "unknown" %}<div class="orange">{{ results|get_result:sample.id }}</div>{%  elif results|get_result:sample.id == "malicious" %}<div class="red">{{ results|get_result:sample.id }}</div>{%  elif results|get_result:sample.id == "scanning..." %}<div class="grey">{{ results|get_result:sample.id }}</div>{% endif %}</td>
+			</tr>
+	    	{% endfor %}
+         </tbody>
+	</table>
+   </div>
+  </div>
+</section>
+{% endblock %}

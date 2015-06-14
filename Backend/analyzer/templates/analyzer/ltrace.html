@@ -1,0 +1,29 @@
+{% extends "analyzer/base.html" %}
+
+{% block meta %}
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+{% endblock %}
+
+{% block nav %}
+<ul class="nav">
+            <li><a href="/">Home</a></li>
+            <li class="active"><a href="/reports">Reports</a></li>
+            <li><a href="/about">About</a></li>
+</ul>
+{% endblock %}
+{% block content %}
+<div align="center"><a href="/report/?q={{ query_string }}">Back to analysis overview</a></div>
+<section id="tables">
+  <div class="row">
+    <div class="span4 columns">
+      <h2>Native Library Calls</h2>
+    </div>
+    <div class="span12 columns">
+	    {% autoescape off %} 
+	    {{ltrace}}
+	    {% endautoescape %}
+         </div>
+	</div>
+</section>
+<div align="center"><a href="/report/?q={{ query_string }}">Back to analysis overview</a></div>
+{% endblock %}

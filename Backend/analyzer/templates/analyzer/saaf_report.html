@@ -1,0 +1,79 @@
+{% extends "analyzer/base.html" %}
+{% load reports_extras %}
+{% block meta %}
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+{% endblock %}
+
+{% block nav %}
+<ul class="nav">
+            <li><a href="/">Home</a></li>
+            <li class="active"><a href="/reports">Reports</a></li>
+            <li><a href="/about">About</a></li>
+</ul>
+{% endblock %}
+{% block content %}
+{% if query_string != '' %}
+<div align="center"><a href="/report/?q={{ id }}">Back to analysis overview</a></div>
+<section id="tables">
+  <div class="row">
+    <div class="span16 columns">
+	    {% autoescape off %}
+            <h3>Backtracking results</h3>
+
+	    {% for result in backtracking %}
+	    <table>
+              <thead>
+                <tr>
+                  <th colspan="2">{{ result.method }}</th>
+                </tr>
+              </thead>
+              <tr>
+                <th>Value</th>
+                <td>{{ result.value }} ({{ result|get_result:"variable-description" }}, {{ result|get_result:"variable-type" }})</td>
+              </tr>
+              <tr>
+                <th>Location</th>
+                <td>{{ result.file }}:{{ result.line }}</td>
+              </tr>
+              <tr>
+                <th>Pattern</th>
+                <td>{{ result.pattern|get_result:"#text" }}</td>
+              </tr>
+            </table>
+            {% endfor %}
+            <h3>Heuristic results</h3>
+            {% for result in heuristics %}
+            <table>
+              <thead>
+                <tr>
+                  <th colspan="2">{{ result.method }}</th>
+                </tr>
+              </thead>
+              <tr>
+                <th>Location</th>
+                <td>{{ result.file }}:{{ result.line }}</td>
+              </tr>
+              <tr>
+                <th>Pattern</th>
+                <td>{{ result.pattern|get_result:"#text" }}</td>
+              </tr>
+            </table>
+            {% endfor %}
+            {% endautoescape %}
+         </div>
+	</div>
+</section>
+<div align="center"><a href="/report/?q={{ id }}">Back to analysis overview</a></div>
+{% else %}
+<section id="tables">
+  <div class="row">
+    <div class="span4 columns">
+      <h2>SAAF<br>&nbsp;&nbsp;&nbsp;&nbsp;-- Report --</h2>
+    </div>
+    <div class="span12 columns">
+	    {{ query_string }}
+         </div>
+	</div>
+</section>
+{% endif%}
+{% endblock %}

@@ -1,0 +1,63 @@
+{% extends "analyzer/base.html" %}
+
+{% block meta %}
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+{% endblock %}
+
+{% block nav %}
+<ul class="nav">
+    <li><a href="/">Home</a></li>
+    <li class="active"><a href="/reports">Reports</a></li>
+    <li><a href="/about">About</a></li>
+</ul>
+{% endblock %}
+{% block content %}
+<div align="center"><a href="/report/?q={{ query_string }}">Back to analysis overview</a></div>
+<section id="tables">
+    <div class="row">
+        <div class="span4 columns">
+            <h2>Network Traffic</h2>
+        </div>
+        <div class="span12 columns">
+            {% autoescape off %} 
+            <table>
+                {% for traffic_log in found_logs %}
+                <tr>
+                    <td>{{traffic_log}}</td>
+                </tr>
+                {% endfor %}
+            </table>
+            
+            {% if conn_details.error %}
+            <h2 style="color: #f00">{{ conn_details.error }}</h2>
+            {% else %}
+            
+            {% if ipaddr %}
+            <h2>Data of {{ ipaddr }}</h2>
+            {% for conn_detail in conn_details %}
+            <table>
+                <tr>
+                    <td>
+                        {% if conn_detail.sport %}
+                        <b>[{{ conn_detail.timestamp }}]  {{ conn_detail.conn_type }}</b> {{ conn_detail.src }}:{{ conn_detail.sport }} &gt; {{ conn_detail.dst }}:{{ conn_detail.dport }}
+                        {% else %}
+                        <b>[{{ conn_detail.timestamp }}]  {{ conn_detail.conn_type }}</b> {{ conn_detail.src }} &gt; {{ conn_detail.dst }}
+                        {% endif %}
+                        {% if conn_detail.rawdata %}
+                        <div style="border: 3px solid black; margin: 20px; padding: 5px">{{ conn_detail.rawdata }}</div>
+                        {% else %}
+                        <div style="margin: 20px; padding: 5px">NO DATA</div>
+                        {% endif %}
+                    </td>
+                </tr>
+            </table>
+            {% endfor %}
+            {% endif %}
+            
+            {% endif %}
+            {% endautoescape %} 	
+        </div>
+    </div>
+</section>
+<div align="center"><a href="/report/?q={{ query_string }}">Back to analysis overview</a></div>
+{% endblock %}

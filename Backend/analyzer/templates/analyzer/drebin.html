@@ -1,0 +1,48 @@
+{% extends "analyzer/base.html" %}
+
+{% block meta %}
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+{% endblock %}
+
+{% block nav %}
+<ul class="nav">
+    <li><a href="/">Home</a></li>
+    <li class="active"><a href="/reports">Reports</a></li>
+    <li><a href="/about">About</a></li>
+</ul>
+{% endblock %}
+{% block content %}
+<div align="center"><a href="/report/?q={{ query_string }}">Back to analysis overview</a></div>
+<br/><br/><br/>
+    This rating is based on the model generated in 01/2013 and therefore could be slightly outdated.<br/>We are working on
+    a new model and will update each rating afterwards.
+<section id="tables">
+    <div class="row">
+        {% if entries_dict %}
+            {% for ft_cat, features in entries_dict.items %}
+
+        <table class="zebra-striped" id="sortTableExample2">
+            <thead>
+                <tr>
+                    <th class="blue">{{ ft_cat }}</th>
+                    <th class="black">Rating</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for feature in features %}
+                <tr>
+                    <td>{{ feature.feature }}</td>
+                    <td width="10%">{{ feature.ranking }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        
+            {% endfor %}
+        {% else %}
+        <h2>No machine learning based reports found for the sample with the ID {{ query_string }}</h2>
+        {% endif %}
+    </div>
+</section>
+<div align="center"><a href="/report/?q={{ query_string }}">Back to analysis overview</a></div>
+{% endblock %}

@@ -1,0 +1,94 @@
+{% extends "analyzer/base.html" %}
+
+{% block meta %}
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+{% endblock %}
+
+{% block nav %}
+<ul class="nav">
+            <li><a href="/">Home</a></li>
+            <li class="active"><a href="/reports">Reports</a></li>
+            <li><a href="/about">About</a></li>
+</ul>
+{% endblock %}
+{% block content %}
+<section id="tables">
+  <div class="row">
+    <div class="span4 columns">
+      <h2>Reports:</h2><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src='{{ png }}' width='50px' />
+    </div>
+    <div class="span12 columns">
+      {% if found_entries_report %}
+      <table class="zebra-striped" id="sortTable1">
+        <thead>
+         <tr>
+            <th class="blue">Analyzer</th>
+            <th class="red">Type</th>
+            <th class="green">Start</th>
+            <th class="green">End</th>
+            <th class="black">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+	    	{% for reports in found_entries_report %}
+	    	<tr>
+	        	<td>{% if reports.status == "done" and reports.analyzer_id.type == "static" %}<a href="/xml_report_static/?q={{ reports.id }}">{% endif %}
+                    {% if reports.status == "done" and reports.analyzer_id.type == "dynamic" %}<a href="/xml_report_dynamic/?q={{ reports.id }}">{% endif %}
+                    {% if reports.status == "done" and reports.analyzer_id.name == "SAAF" %}<a href="/saaf_report/?q={{ reports.id }}">{% endif %}
+                    {{ reports.analyzer_id.name }}{% if reports.status == "done" %}</a>{% endif %}</td>
+                <td>{{ reports.analyzer_id.type }}</td>
+                <td>{{ reports.start_of_analysis }}</td>
+                <td>{{ reports.end_of_analysis }}</td>
+	        	<td>{{ reports.status }}</td>
+	        </tr>
+	        {% endfor %}
+         </tbody>
+	</table>
+        <br>
+        <br>
+        <table class="zebra-striped" id="sortTable2">
+         <thead>
+         <tr>
+            <th class="black" colspan="6">Additional Information</th>
+          </tr>
+         </thead>
+         <tbody>
+		    <tr>
+                <td>{% if overviewAvailable == 1 %}<a href="/overview/?q={{ query_string }}">Overview</a>{% endif %}</td>
+	        	<td><a href="/apk/?q={{ query_string }}">APK Info</a></td>
+                <td><a href="/cert/?q={{ query_string }}">Certificate Info</a></td>
+                <td>{% if screenshotAvailable == 1 %}<a href="/screenshots/?q={{ query_string }}">Screenshots</a>{% endif %}</td>
+                <td>{% if pcapAvailable == 1 %}<a href="/network/?q={{ query_string }}">PCAP Analysis</a>{% endif %}</td>
+                <td>{% if ltraceAvailable == 1 %}<a href="/ltrace/?q={{ query_string }}">ltrace Output</a>{% endif %}</td>
+	        </tr>
+         </tbody>
+	</table>
+        <br>
+        <br>
+        <table class="zebra-striped" id="sortTable3">
+        <thead>
+         <tr>
+            <th class="blue">Detection-Engine</th>
+            <th class="black">Result</th>
+          </tr>
+        </thead>
+        <tbody>
+	    	<tr>
+                <td>VirusTotal</td>
+                <td>{% if DR == 'Sample not in database!' or DR == 'scanning...'%}{{ DR }}{% else %}<a href="/av/?q={{ query_string }}">{{ DR }}</a>{% endif %}</td>
+	        </tr>
+            {% if ML != '' %}
+            <tr>
+                <td>Drebin (Machine Learning)</td>
+                <td><a href="/drebin/?q={{ query_string }}">{{ ML }}</a></td>
+	        </tr>
+            {% endif %}
+         </tbody>
+	</table>
+         </div>
+         {% else %}
+                <h2>No reports found for the sample with the ID {{ query_string }}</h2>
+         {% endif %}
+	</div>
+</section>
+{% endblock %}

@@ -1,0 +1,190 @@
+{% extends "analyzer/base.html" %}
+
+{% block meta %}
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+{% endblock %}
+
+{% block nav %}
+<ul class="nav">
+            <li><a href="/">Home</a></li>
+            <li class="active"><a href="/reports">Reports</a></li>
+            <li><a href="/about">About</a></li>
+</ul>
+{% endblock %}
+{% block content %}
+    {{ found_answers }}
+<div align="center"><a href="/report/?q={{ id }}">Back to analysis overview</a></div>
+<section id="tables">
+  <div class="row">
+    <div class="span16 columns">
+	    <table class="zebra-striped">
+            <thead>
+         <tr>
+            <th colspan="2" class="blue">Meta Data</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>SHA256:</td>
+                <td style="text-align:right">{{sha256}}</td>
+            </tr>
+            <tr>
+                <td>APK Name:</td>
+                <td style="text-align:right">{{apk}}</td>
+            </tr>
+            <tr>
+                <td>Package Name:</td>
+                <td style="text-align:right">{{package}}</td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+    <div class="span8 columns">
+    <table class="zebra-striped">
+        <thead>
+         <tr>
+            <th colspan="2" class="red">Access to Personal or Sensitive Device Information</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Does the app try to access the local address book:</td>
+                <td style="text-align:right">{{ questions.q01 }}</td>
+            </tr>
+            <tr>
+                <td>Does the app try to access the local calendar:</td>
+                <td style="text-align:right">{{ questions.q02 }}</td>
+            </tr>
+            <tr>
+                <td>Does the app try to access stored pictures:</td>
+                <td style="text-align:right">{{ questions.q03 }}</td>
+            </tr>
+            <tr>
+                <td>Does the app try to access configured accounts:</td>
+                <td style="text-align:right">{{ questions.q04 }}</td>
+            </tr>
+            <tr>
+                <td>Does the app try to access the local SMS or MMS messages:</td>
+                <td style="text-align:right">{{ questions.q05 }}</td>
+            </tr>
+            <tr>
+                <td>Does the app try to access device identifiers:</td>
+                <td style="text-align:right">{{ questions.q06 }}</td>
+            </tr>
+            <tr>
+                <td>Does the app try to access SIM card identifiers:</td>
+                <td style="text-align:right">{{ questions.q07 }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="zebra-striped">
+        <thead>
+         <tr>
+            <th colspan="2" class="orange">Security Relevant Actions:</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Does the app use crypto:</td>
+                <td style="text-align:right">{{ questions.q08 }}</td>
+            </tr>
+            <tr>
+                <td>Does the app load external libraries:</td>
+                <td style="text-align:right">{{ questions.q09 }}</td>
+            </tr>
+            <tr>
+                <td>Does the app try to modify device settings:</td>
+                <td style="text-align:right">{{ questions.q10 }}</td>
+            </tr>
+            <tr>
+                <td>Does the app try to install additional apps:</td>
+                <td style="text-align:right">{{ questions.q11 }}</td>
+            </tr>
+            <tr>
+                <td>Does the app try to disable the screen lock:</td>
+                <td style="text-align:right">{{ questions.q12 }}</td>
+            </tr>
+            <tr>
+                <td>Does the app embed ad networks:</td>
+                <td style="text-align:right">{{ questions.q13 }}</td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+    <div class="span8 columns">
+    <table class="zebra-striped">
+        <thead>
+         <tr>
+            <th colspan="2" class="orange">Access to Hardware Modules or Sensors</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Does the app try to use the camera:</td>
+                <td style="text-align:right">{{ questions.q14 }}</td>
+            </tr>
+            <tr>
+                <td>Does the app try to use the microphone:</td>
+                <td style="text-align:right">{{ questions.q15 }}</td>
+            </tr>
+            <tr>
+                <td>Does the app try to locate the device using the GPS sensor:</td>
+                <td style="text-align:right">{{ questions.q16 }}</td>
+            </tr>
+            <tr>
+                <td>Does the app try to locate the device using network triangulation:</td>
+                <td style="text-align:right">{{ questions.q17 }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="zebra-striped">
+        <thead>
+         <tr>
+            <th colspan="2" class="green">Communication:</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Does the app communicate with the Internet:</td>
+                <td style="text-align:right">{{ questions.q18 }}</td>
+            </tr>
+            <tr>
+                <td>Does the app use cloud services:</td>
+                <td style="text-align:right">{{ questions.q19 }}</td>
+            </tr>
+            <tr>
+                <td>Does the app try to send SMS messages:</td>
+                <td style="text-align:right">{{ questions.q20 }}</td>
+            </tr>
+            <tr>
+                <td>Does the app try to start a phone call:</td>
+                <td style="text-align:right">{{ questions.q21 }}</td>
+            </tr>
+            <tr>
+                <td>Does the app try to open local ports:</td>
+                <td style="text-align:right">{{ questions.q22 }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="zebra-striped">
+        <thead>
+         <tr>
+            <th colspan="2" class="green">Storage:</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Does the app use local databases to store data:</td>
+                <td style="text-align:right">{{ questions.q23 }}</td>
+            </tr>
+            <tr>
+                <td>Does the app use local storage (like SD card):</td>
+                <td style="text-align:right">{{ questions.q24 }}</td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+  </div>
+</section>
+<div align="center"><a href="/report/?q={{ id }}">Back to analysis overview</a></div>
+{% endblock %}

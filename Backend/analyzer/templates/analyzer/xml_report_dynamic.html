@@ -1,0 +1,181 @@
+{% extends "analyzer/base.html" %}
+
+{% block meta %}
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+{% endblock %}
+
+{% block nav %}
+<ul class="nav">
+    <li><a href="/">Home</a></li>
+    <li class="active"><a href="/reports">Reports</a></li>
+    <li><a href="/about">About</a></li>
+</ul>
+{% endblock %}
+{% block content %}
+{% if query_string == '' %}
+
+<script src="{{STATIC_URL}}js/d3.v3.min.js"></script>  <!-- SOURCE: http://d3js.org/d3.v3.min.js -->
+<script src="{{STATIC_URL}}js/dimple.v2.1.0.min.js"></script> <!-- SOURCE: http://dimplejs.org/dist/dimple.v2.1.0.min.js -->
+<script type="text/javascript">
+    {% autoescape off %} 
+    var json_activities = {{json_activities}};
+    {% endautoescape %}
+    function scrollToAnchor(id)
+     {
+         window.location.hash = id.substring(1);
+         var targetY = $(id).position().top;
+         window.scrollTo(0, targetY);
+     }
+     function refreshContentTable()
+     {
+         var defaultOffset = 75;
+         var windscroll = jQuery(window).scrollTop();
+         var topOfTable = $('#contentTable').position().top;
+         var targetMargin = defaultOffset;
+         if(windscroll > topOfTable)
+         {
+             targetMargin += windscroll - topOfTable;
+         }
+         $('#contentTable').css('margin-top', targetMargin + 'px');
+     }
+     $(window).scroll(function($){
+         refreshContentTable();
+     });
+     document.body.onload=function(){refreshContentTable()};
+</script>
+
+<div align="center"><a href="/report/?q={{ id }}">Back to analysis overview</a></div>
+<section id="tables">
+    <div class="row">
+        <div class="span4 columns">
+            <div id="contentTable">
+                <ul>
+                    <li><a href="#sha256" onclick="scrollToAnchor('#sha256'); return false">SHA256</a></li>
+                    <li><a href="#sha" onclick="scrollToAnchor('#sha'); return false">SHA</a></li>
+                    <li><a href="#md5" onclick="scrollToAnchor('#md5'); return false">MD5</a></li>
+                    <li><a href="#startDate" onclick="scrollToAnchor('#startDate'); return false">Start of Analysis</a></li>
+                    <li><a href="#endDate" onclick="scrollToAnchor('#endDate'); return false">End of Analysis</a></li>
+                    <li><a href="#apkname" onclick="scrollToAnchor('#apkname'); return false">APK Name</a></li>
+                    <li><a href="#filer" onclick="scrollToAnchor('#filer'); return false">File Access (Read)</a></li>
+                    <li><a href="#filew" onclick="scrollToAnchor('#filew'); return false">File Access (Write)</a></li>
+                    <li><a href="#net" onclick="scrollToAnchor('#net'); return false">Used Networks</a></li>
+                    <li><a href="#sms" onclick="scrollToAnchor('#sms'); return false">Sent SMS Messages</a></li>
+                    <li><a href="#phone" onclick="scrollToAnchor('#phone'); return false">Phone Calls</a></li>
+                    <li><a href="#crypto" onclick="scrollToAnchor('#crypto'); return false">Crypto Usage</a></li>
+                    <li><a href="#dex" onclick="scrollToAnchor('#dex'); return false">DexClass Initializations</a></li>
+                    <li><a href="#broad" onclick="scrollToAnchor('#broad'); return false">Registered Broadcast Receivers</a></li>
+                    <li><a href="#enfperm" onclick="scrollToAnchor('#enfperm'); return false">Enforced Permissions</a></li>
+                    <li><a href="#service" onclick="scrollToAnchor('#service'); return false">Started Services</a></li>
+                    <li><a href="#leaks" onclick="scrollToAnchor('#leaks'); return false">Data Leaks</a></li>
+                    <li><a href="#activities" onclick="scrollToAnchor('#activities'); return false">Activities</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="span12 columns">
+            {% autoescape off %} 
+            <table>
+                <tr id="sha256">
+                    <th>SHA256:</th>
+                    <td>{{sha256}}</td>
+                </tr>
+                <tr id="sha">
+                    <th>SHA:</th>
+                    <td>{{sha}}</td>
+                </tr>
+                <tr id="md5">
+                    <th>MD5:</th>
+                    <td>{{md5}}</td>
+                </tr>
+                <tr id="startDate">
+                    <th>Start of Analysis:</th>
+                    <td>{{date1}}</td>
+                </tr>
+                <tr id="endDate">
+                    <th>End of Analysis:</th>
+                    <td>{{date2}}</td>
+                </tr>
+                <tr id="apkname">
+                    <th>apk Name:</th>
+                    <td>{{apk_name}}</td>
+                </tr>
+                <tr id="filer">
+                    <th style="vertical-align: top;">File Access (Read):</th>
+                    <td>{{fileR}}</td>
+                </tr>
+                <tr id="filew">
+                    <th style="vertical-align: top;">File Access (Write):</th>
+                    <td>{{fileW}}</td>
+                </tr>
+                <tr id="net">
+                    <th style="vertical-align: top;">Used Networks:</th>
+                    <td>{{networks}}</td>
+                </tr>
+                <tr id="sms">
+                    <th style="vertical-align: top;">Sent SMS Messages:</th>
+                    <td>{{sms}}</td>
+                </tr>
+                <tr id="phone">
+                    <th style="vertical-align: top;">Phone Calls:</th>
+                    <td>{{calls}}</td>
+                </tr>
+                <tr id="crypto">
+                    <th style="vertical-align: top;">Crypto Usage:</th>
+                    <td>{{crypto}}</td>
+                </tr>
+                <tr id="dex">
+                    <th style="vertical-align: top;">DexClass Initializations:</th>
+                    <td>{{dex}}</td>
+                </tr>
+                <tr id="broad">
+                    <th style="vertical-align: top;">Registered Broadcast Receivers:</th>
+                    <td>{{broad}}</td>
+                </tr>
+                <tr id="enfperm">
+                    <th style="vertical-align: top;">Enforced Permissions:</th>
+                    <td>{{ENFpermissions}}</td>
+                </tr>
+                <tr id="service">
+                    <th style="vertical-align: top;">Started Services:</th>
+                    <td>{{service}}</td>
+                </tr>
+                <tr id="leaks">
+                    <th style="vertical-align: top;">Data Leaks:</th>
+                    <td>{{leaks}}</td>
+                </tr>
+                <tr id="activities">
+                    <th style="vertical-align: top;">Activities:</th>
+                    <td>
+                        <div id="activities_bar_chart"></div>
+                        <script type="text/javascript">
+                            var svg = dimple.newSvg("#activities_bar_chart", "100%", "1000px");
+                            var myChart = new dimple.chart(svg, json_activities);
+                            myChart.setBounds(150, 50, "70%", "70%")
+                            myChart.addCategoryAxis("x", ["Category", "Operation"]);
+                            myChart.addCategoryAxis("y", "Timestamp");
+                            myChart.addSeries("Operation", dimple.plot.bar);
+                            myChart.addLegend(170, 10, 630, 20, "right");
+                            myChart.draw();
+                        </script>
+                    </td>
+                </tr>
+            </table>
+            {% endautoescape %} 	
+        </div>
+    </div>
+</section>
+<div align="center"><a href="/report/?q={{ id }}">Back to analysis overview</a></div>
+{% else %}
+<section id="tables">
+    <div class="row">
+        <div class="span4 columns">
+            <h2>DroidBox 4.1.1<br>&nbsp;&nbsp;&nbsp;&nbsp;-- Report --</h2>
+        </div>
+        <div class="span12 columns">
+            {% autoescape off %} 
+            {{ query_string }}
+            {% endautoescape %} 	
+        </div>
+    </div>
+</section>
+{% endif%}
+{% endblock %}

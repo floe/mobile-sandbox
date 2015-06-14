@@ -1,0 +1,70 @@
+{% extends "analyzer/base.html" %}
+
+{% block meta %}
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+{% endblock %}
+
+{% block nav %}
+<ul class="nav">
+            <li><a href="/">Home</a></li>
+            <li class="active"><a href="/reports">Reports</a></li>
+            <li><a href="/about">About</a></li>
+</ul>
+{% endblock %}
+{% block content %}
+{% if query_string == '' %}
+<div align="center"><a href="/report/?q={{ id }}">Back to analysis overview</a></div>
+<section id="tables">
+  <div class="row">
+    <div class="span16 columns">
+	    {% autoescape off %} 
+	    <table>
+              <tr>
+                <th>SHA256:</th>
+                <td>{{sha256}}</td>
+              </tr>
+              <tr>
+                <th>MD5:</th>
+                <td>{{ md5 }}</td>
+              </tr>
+	      <tr>
+                <th>ssdeep:</th>
+                <td>{{ ssdeep }}</td>
+              </tr>
+              <tr>
+                <th>APK Name:</th>
+                <td>{{apk_name}}</td>
+              </tr>
+              <tr>
+                <th>Package Name:</th>
+                <td>{{package_name}}</td>
+              </tr>
+              <tr>
+                <th>SDK Version:</th>
+                <td>{{sdk_version}}</td>
+              </tr>
+	      <tr>
+                <th>Files inside the APK-package:</th>
+                <td>{{files}}</td>
+              </tr>
+            </table>
+            {% endautoescape %} 	
+         </div>
+	</div>
+</section>
+<div align="center"><a href="/report/?q={{ id }}">Back to analysis overview</a></div>
+{% else %}
+<section id="tables">
+  <div class="row">
+    <div class="span4 columns">
+      <h2>APK Infos</h2>
+    </div>
+    <div class="span12 columns">
+	    {% autoescape off %} 
+	    {{ query_string }}
+            {% endautoescape %} 	
+         </div>
+	</div>
+</section>
+{% endif%}
+{% endblock %}

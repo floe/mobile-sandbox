@@ -1,0 +1,104 @@
+{% extends "analyzer/base.html" %}
+
+{% block meta %}
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+{% endblock %}
+
+{% block nav %}
+<ul class="nav">
+            <li><a href="/">Home</a></li>
+            <li class="active"><a href="/reports">Reports</a></li>
+            <li><a href="/about">About</a></li>
+</ul>
+{% endblock %}
+{% block content %}
+{% if query_string == '' %}
+<div align="center"><a href="/report/?q={{ id }}">Back to analysis overview</a></div>
+<section id="tables">
+  <div class="row">
+    <div class="span16 columns">
+	    {% autoescape off %} 
+	    <table>
+              <tr>
+                <th>SHA256:</th>
+                <td>{{sha256}}</td>
+              </tr>
+              <tr>
+                <th>MD5:</th>
+                <td>{{ md5 }}</td>
+              </tr>
+	      <tr>
+                <th>ssdeep:</th>
+                <td>{{ ssdeep }}</td>
+              </tr>
+              <tr>
+                <th>Start of Analysis:</th>
+                <td>{{date1}}</td>
+              </tr>
+	      <tr>
+                <th>End of Analysis:</th>
+                <td>{{date2}}</td>
+              </tr>
+              <tr>
+                <th style="vertical-align:top">Used Features:</th>
+                <td>{{features}}</td>
+              </tr>
+              <tr>
+                <th style="vertical-align:top">Requested Permissions from Android Manifest:</th>
+                <td>{{permissions}}</td>
+              </tr>
+	      <tr>
+                <th style="vertical-align:top">Used Permissions:</th>
+                <td>{{real_permissions}}</td>
+              </tr>
+	      <tr>
+                <th style="vertical-align:top">Responsible API calls for used Permissions:</th>
+                <td>{{api_calls}}</td>
+              </tr>
+              <tr>
+                <th style="vertical-align:top">Used Intents:</th>
+                <td>{{intents}}</td>
+              </tr>
+	      <tr>
+                <th style="vertical-align:top">Used Activities:</th>
+                <td>{{activities}}</td>
+              </tr>
+              <tr>
+                <th style="vertical-align:top">Potentially dangerous Calls:</th>
+                <td>{{calls}}</td>
+              </tr>
+              <tr>
+                <th style="vertical-align:top">Used Services and Receiver:</th>
+                <td>{{serrecs}}</td>
+              </tr>
+	      <tr>
+                <th style="vertical-align:top">Used Providers:</th>
+                <td>{{providers}}</td>
+              </tr>
+	      <tr>
+                <th style="vertical-align:top">Used Networks:</th>
+                <td>{{networks}}</td>
+              </tr>
+              <tr>
+                <th style="vertical-align:top">Found hardcoded URLs and IPs:</th>
+                <td>{{urls}}</td>
+              </tr>
+            </table>
+            {% endautoescape %} 	
+         </div>
+	</div>
+</section>
+<div align="center"><a href="/report/?q={{ id }}">Back to analysis overview</a></div>
+{% else %}
+<section id="tables">
+  <div class="row">
+    <div class="span4 columns">
+      <h2>Droidlyzer<br>&nbsp;&nbsp;&nbsp;&nbsp;-- Report --</h2>
+    </div>
+    <div class="span12 columns">
+	    {{ query_string }}
+         </div>
+	</div>
+</section>
+{% endif%}
+{% endblock %}
