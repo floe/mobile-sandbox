@@ -11,7 +11,7 @@ Within this repo you can find some tools and patches for well-known tools which 
 
     Here you can find the module to connect the Mobile-Sandbox to VirusTotal
 
-* Backend (comming soon):
+* Backend:
 
     Here you can find the Mobile-Sandbox backend (Django)
 
@@ -31,7 +31,7 @@ Within this repo you can find some tools and patches for well-known tools which 
 
     Here you can find the static analyzer of the Mobile-Sandbox.
 
-* DroidMS (comming soon):
+* DroidMS:
 
    Here you can find the dynamic analysis module of the Mobile-Sandbox.
 
